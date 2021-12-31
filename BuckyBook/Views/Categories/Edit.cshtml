@@ -1,0 +1,41 @@
+﻿@model BuckyBook.Models.Category
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+ <div class="">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Category</h2> 
+        </div>
+    </div>
+    <br/>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+             <br/>
+            <div class="form-group">
+                <label asp-for="DisplayOrder" class="control-label"></label>
+                <input asp-for="DisplayOrder" class="form-control" />
+                <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                 <a asp-action="Index" class="btn btn-primary">Back to List</a> &nbsp;
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

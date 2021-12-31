@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BuckyBook.Models.Category>
+
+   
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3"> 
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2> 
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Categories" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category 
+            </a>
+        </div>
+    </div>
+    <br/>
+<table class="table table-hover table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayOrder)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td width="40%">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td width="30%">
+                @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a> 
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">
+                   <i class="bi bi-trash-fill"></i> Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
