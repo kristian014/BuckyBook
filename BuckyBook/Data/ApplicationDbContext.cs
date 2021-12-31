@@ -12,5 +12,6 @@ namespace BuckyBook.Data
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CoverType> CoverType { get; set; }
     }
 }
