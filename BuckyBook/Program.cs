@@ -1,6 +1,7 @@
 using BuckyBook;
 using BuckyBook.Contracts;
 using BuckyBook.Data;
+using AutoMapper;
 using BuckyBook.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 var app = builder.Build();
 
@@ -40,6 +43,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//app.MapControllerRoute(
+//        name: "Admin",
+//        pattern: "{area=Admin}/{controller=Products}/{action=Index}/{id?}");
+app.MapControllerRoute(
+        name: "Customer",
+        pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

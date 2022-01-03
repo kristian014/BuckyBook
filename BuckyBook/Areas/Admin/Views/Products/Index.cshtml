@@ -1,0 +1,153 @@
+﻿@model IEnumerable<BuckyBook.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3"> 
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2> 
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Products" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Product 
+            </a>
+        </div>
+    </div>
+    <br/>
+
+    @* 
+    Another  method of implementing form submission
+    https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/search?view=aspnetcore-6.0
+    *@
+
+    <form asp-controller="Products" asp-action="Index">
+    <p>
+        <input type="text" id="searchString" placeholder="Search Product" autocomplete="off"  name="searchString" />
+
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+ 
+<table class="table table-hover table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price50)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price100)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoverType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price50)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price100)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoverType.Name)
+            </td>
+
+            <td class="text-end">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a> 
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                   <i class="bi bi-trash-fill"></i> Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+ @section Scripts {
+   @*  <script>
+        // New timeout variable
+        //let timeout = null;
+        document.getElementById('searchString').addEventListener('keyup', function (e) {
+
+            // Clear existing timeout      
+            //clearTimeout(timeout);
+
+            // Reset the timeout to start again
+            LiveSearch()
+
+            });
+
+function LiveSearch() {
+    //Get the input value
+    let value = document.getElementById('searchString').value
+
+    $.ajax({
+        type: "POST",
+        // You can use the absolute url eg www.site.com/Products/Index or the relative path live below  
+        url: "/Admin/Products/Index",
+        contentType: "html",
+        // Attach the value to a parameter called search
+        data: { searchString: value },
+        
+        success: function (data) {
+                  // Insert the returned search results html into the result element 
+                 // console.log()data
+                  $('#result').html(data);
+                 }
+        });
+}
+    </script>*@
+    }

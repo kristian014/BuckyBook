@@ -8,84 +8,78 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BuckyBook.Data;
 using BuckyBook.Models;
-using BuckyBook.Contracts;
 
-namespace BuckyBook.Controllers
+namespace BuckyBook.Areas.Admin.Controllers
 {
-    public class CategoriesController : Controller
+    [Area("Admin")]
+    public class CoverTypesController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public CategoriesController(IUnitOfWork unitOfWork)
+        public CoverTypesController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-        // GET: Categories
+        // GET: CoverTypes
         public async Task<IActionResult> Index()
         {
-            return View(await unitOfWork.Category.GetAllAsync());
+            return View(await unitOfWork.CoverType.GetAllAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: CoverTypes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-
-            var category = await unitOfWork.Category.GetAsync(id);
-            if (category == null)
+            var coverType = await unitOfWork.CoverType.GetAsync(id);
+            if (coverType == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(coverType);
         }
 
-        // GET: Categories/Create
+        // GET: CoverTypes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: CoverTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,DisplayOrder")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Name")] CoverType coverType)
         {
-            if(category.Name == category.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError(string.Empty, "The Display Order Cannot excatly match the Name");
-            }
             if (ModelState.IsValid)
             {
-                category.DateCreated = DateTime.Now;
-                await unitOfWork.Category.AddAsync(category);
-                TempData["success"] = "Category created successfully";
+                await unitOfWork.CoverType.AddAsync(coverType);
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(coverType);
         }
 
-        // GET: Categories/Edit/5
+        // GET: CoverTypes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            var category = await unitOfWork.Category.GetAsync(id);
-            if (category == null)
+           
+            var coverType = await unitOfWork.CoverType.GetAsync(id);
+            if (coverType == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(coverType);
         }
 
-        // POST: Categories/Edit/5
+        // POST: CoverTypes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,DisplayOrder")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] CoverType coverType)
         {
-            if (id != category.ID)
+            if (id != coverType.Id)
             {
                 return NotFound();
             }
@@ -94,12 +88,13 @@ namespace BuckyBook.Controllers
             {
                 try
                 {
-                    category.DateCreated = DateTime.Now;
-                   await unitOfWork.Category.UpdateAsync(category);
+                    await unitOfWork.CoverType.UpdateAsync(coverType);
+                 
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                   if (!await unitOfWork.Category.Exists(category.ID))
+                  
+                    if (!await unitOfWork.CoverType.Exists(coverType.Id))
                     {
                         return NotFound();
                     }
@@ -108,38 +103,31 @@ namespace BuckyBook.Controllers
                         throw;
                     }
                 }
-                TempData["success"] = "Category updated successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(coverType);
         }
 
-        // GET: Categories/Delete/5
+        // GET: CoverTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-           var category = await unitOfWork.Category.GetAsync(id);
-            if (category == null)
+            var coverType = await unitOfWork.CoverType.GetAsync(id);
+         
+            if (coverType == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(coverType);
         }
 
-        // POST: Categories/Delete/5
+        // POST: CoverTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           await unitOfWork.Category.DeleteAsync(id);
-    
-            TempData["success"] = "Category deleted successfully";
-            return RedirectToAction(nameof(Index));
+          await unitOfWork.CoverType.DeleteAsync(id);
+           return RedirectToAction(nameof(Index));
         }
-
-       // private bool CategoryExists(int id)
-        //{
-          //  return _context.Categories.Any(e => e.ID == id);
-        //}
     }
 }

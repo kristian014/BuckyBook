@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BuckyBook</a>
+                <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">BuckyBook</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,33 +27,34 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Categories" asp-action="Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="CoverTypes" asp-action="Index">CoverType</a>
-                        </li>
-                        @*
-                          <li class="nav-item dropdown">
-                             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Link
-                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li><a class="dropdown-item" asp-controller="#" asp-action="#">Leave Type</a></li>
-                                <li><a class="dropdown-item" href="#">Leave Allocations</a></li>
-                                <li><a class="dropdown-item" href="#">Employment Management</a></li>
-                            </ul>
+                      
+                            <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
+                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                   <li class="nav-item">
+                                       <a class="nav-link text-dark" asp-area="Admin" asp-controller="Categories" asp-action="Index">Category</a>
+                                   </li>
+                                   <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="CoverTypes" asp-action="Index">CoverType</a>
+                                   </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Products" asp-action="Index">Product</a>
+                                   </li>
+                             
+                                </ul>
                           </li>
-                        *@
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container bg-light" style="height:100vh">
+    <div class="container bg-light">
         <main role="main" class="pb-3">
              <partial name="_Notification" />
             @RenderBody()
@@ -68,6 +69,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

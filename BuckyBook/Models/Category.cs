@@ -5,7 +5,7 @@ namespace BuckyBook.Models
     public class Category
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Display(Name = "Display Order")]
