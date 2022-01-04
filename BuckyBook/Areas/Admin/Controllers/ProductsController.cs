@@ -165,7 +165,20 @@ namespace BuckyBook.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var product = await unitOfWork.Product.GetProductWithId(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var oldImagePath = Path.Combine(webHostEnviroment.WebRootPath, product.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                // if it does delete it
+                System.IO.File.Delete(oldImagePath);
+            }
             await unitOfWork.Product.DeleteAsync(id);
+            TempData["success"] = "Product deleted successfully";
             return RedirectToAction(nameof(Index));
         }
 
