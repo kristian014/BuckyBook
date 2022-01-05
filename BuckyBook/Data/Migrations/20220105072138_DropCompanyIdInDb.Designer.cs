@@ -4,6 +4,7 @@ using BuckyBook.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuckyBook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220105072138_MakeCompanyIdNullableInDb")]
+    partial class DropCompanyIdInDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +34,6 @@ namespace BuckyBook.Data.Migrations
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -95,8 +94,6 @@ namespace BuckyBook.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -113,16 +110,16 @@ namespace BuckyBook.Data.Migrations
                             Id = "8ea993d6-11ab-4438-ac76-a9b951af77d5",
                             AccessFailedCount = 0,
                             City = "Hull",
-                            ConcurrencyStamp = "d781255c-0a9b-4698-b6dc-311c96b9d290",
+                            ConcurrencyStamp = "96c3ddff-dc5c-45d7-a29b-fad8264cac46",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "system",
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAED/zctnV26qFnj5u5grzRq5wFmr3TkH8JSmKAei3daR1owgZUpQSikillQys5kmepA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB980Ho1pqDPThfwImktOxZdEohE8GTfVDUjuLyfJKfGfWJkojLNegThZfTM11mfGg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "752eb322-03fe-4df0-9bcd-35992de1c241",
+                            SecurityStamp = "84596a87-e21f-4879-9471-ea98817e5cf6",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -131,16 +128,16 @@ namespace BuckyBook.Data.Migrations
                             Id = "6bc333d6-41cd-5539-ad37-a8c941bf66d5",
                             AccessFailedCount = 0,
                             City = "London",
-                            ConcurrencyStamp = "1b10d798-f414-4cf5-a552-68601100a988",
+                            ConcurrencyStamp = "ba8de4bf-b6f8-4875-8afe-e66ca2b4370d",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "system",
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEInUmQ9bDPs+6XgumpA2UjuIwiPuimmCxfFYcY/mt1gM8P6aSiJTJ2KTM/ex0K05YQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMkDWiqUVIhYphCiJyDn9N5zn+Sh3Ahm7kB2uQIkzDMJzB/hYP7w1AKIfjhrEhBoiQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6be65051-0bbe-4e49-804e-07ff637d69d9",
+                            SecurityStamp = "974c13c0-d765-4966-887c-fa7fddd4ceba",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -149,16 +146,16 @@ namespace BuckyBook.Data.Migrations
                             Id = "6bd555a6-61fc-4339-bc37-a5c532bf99d5",
                             AccessFailedCount = 0,
                             City = "Doncaster",
-                            ConcurrencyStamp = "a8af2b1f-f73f-42bc-a54f-8cf87b13074f",
+                            ConcurrencyStamp = "57d385d1-2a09-40bb-9a78-d1a8683d89ed",
                             Email = "company@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "system",
                             NormalizedEmail = "COMPANY@LOCALHOST.COM",
                             NormalizedUserName = "COMPANY@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA8Jv+o5HS2NiXq9Ko69L032Uaqq1cHoNI36sesycEh34zzXKtf0pNa2GKsl2lCvbA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOqS8Y1nRlNqAKusjRhNFXt4Es+nrPoIO2ziB+miYFAjguspOFb9FUL1HoDpPne7Rg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6c03addc-ebcc-4af1-a2ca-a5e17e76bfe3",
+                            SecurityStamp = "a353cb5e-c8ab-4775-ab75-4354eddf0d16",
                             TwoFactorEnabled = false,
                             UserName = "company@localhost.com"
                         },
@@ -167,16 +164,16 @@ namespace BuckyBook.Data.Migrations
                             Id = "6dc22d7-83cc-4799-cf47-a2c222bc22d5",
                             AccessFailedCount = 0,
                             City = "Leeds",
-                            ConcurrencyStamp = "888f6e96-bfb1-4fbe-aad4-bebb42557148",
+                            ConcurrencyStamp = "4ee02e55-1628-48f0-97eb-a9ed29cc8c72",
                             Email = "employer@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "system",
                             NormalizedEmail = "EMPLOYER@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC0pfDFA+rFpTL+lnVqLtJDApQtmuoaPogrnQOqIqnaEWulUvicxA/TpnrU84ysPhw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHWkq7B80F/YZd1aFEFvgWH22kDMmOwLlQLZqPUeLapKnKgYGibTbLbOXCxIxDns3w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "de9cd4c1-2b3b-46af-a084-93d7be280767",
+                            SecurityStamp = "01f8295a-4516-4365-95ee-8574de25aed6",
                             TwoFactorEnabled = false,
                             UserName = "employer@localhost.com"
                         });
@@ -338,28 +335,28 @@ namespace BuckyBook.Data.Migrations
                         new
                         {
                             Id = "ca9e7e82-f6f8-4353-9b45-3a9db1ba6176",
-                            ConcurrencyStamp = "bec53252-9bc6-49fc-bc2d-a0e3cde9b313",
+                            ConcurrencyStamp = "7b5a5981-7d23-41f2-8c0c-5e18c0709b56",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "ba9a9e88-a7c4-3361-5a68-3b6cb1aa5166",
-                            ConcurrencyStamp = "0180ce19-c77a-4d21-800b-3d03d2e5ae37",
+                            ConcurrencyStamp = "c3030d9d-97a7-48d7-8332-53944e74ee22",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "ac4c7e66-a4c3-2241-4a77-3c6ca1aa4456",
-                            ConcurrencyStamp = "11a1a1c5-3d1c-4b9c-9673-3532f3ea8aaa",
+                            ConcurrencyStamp = "478afb92-fd37-4b25-b2a8-a0d3de542707",
                             Name = "Company",
                             NormalizedName = "COMPANY"
                         },
                         new
                         {
                             Id = "ca7a7e55-a6c3-2161-4a33-3c7cb3aa7866",
-                            ConcurrencyStamp = "7e78d08e-19c6-4dec-a9da-00a0d137233b",
+                            ConcurrencyStamp = "c1982681-e156-4ab3-9f47-ea89ec42e6bb",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         });
@@ -495,15 +492,6 @@ namespace BuckyBook.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("BuckyBook.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("BuckyBook.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("BuckyBook.Models.Product", b =>

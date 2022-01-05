@@ -2,7 +2,7 @@
 using BuckyBook.Models;
 using BuckyBook.ViewModels;
 
-namespace BuckyBook
+namespace BuckyBook.Configuration
 {
     public class MapperConfig : Profile
     {

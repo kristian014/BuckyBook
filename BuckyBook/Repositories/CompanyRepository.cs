@@ -5,19 +5,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BuckyBook.Repositories
 {
-    public class CoverTypeRepository : GenericRepository<CoverType>, ICoverTypeRepository
+    public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
         private readonly ApplicationDbContext context;
 
-        public CoverTypeRepository(ApplicationDbContext context) : base(context)
+        public CompanyRepository(ApplicationDbContext context) : base(context)
         {
             this.context = context;
         }
 
-        public IEnumerable<SelectListItem> GetAllCoverTypes()
+        public IEnumerable<SelectListItem> GetAllCompanies()
         {
-            IQueryable<CoverType> query = context.CoverTypes;
-            if (query == null) {
+            IQueryable<Company> query = context.Companies;
+            if (query == null)
+            {
                 return Enumerable.Empty<SelectListItem>();
             }
             return query.ToList().Select(s => new SelectListItem
@@ -27,6 +28,5 @@ namespace BuckyBook.Repositories
             });
 
         }
-    
     }
 }

@@ -17,6 +17,10 @@ namespace BuckyBook.Repositories
         public IEnumerable<SelectListItem> GetAllCategories()
         {
             IQueryable<Category> query = context.Categories;
+            if (query == null)
+            {
+                return Enumerable.Empty<SelectListItem>();
+            }
             return query.ToList().Select(s => new SelectListItem
             {
                 Text = s.Name,

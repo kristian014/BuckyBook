@@ -4,6 +4,7 @@ using BuckyBook.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuckyBook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220104135606_AddDefaultUsersAndUsername")]
+    partial class AddDefaultUsersAndUsername
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,166 +23,6 @@ namespace BuckyBook.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("BuckyBook.Models.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8ea993d6-11ab-4438-ac76-a9b951af77d5",
-                            AccessFailedCount = 0,
-                            City = "Hull",
-                            ConcurrencyStamp = "d781255c-0a9b-4698-b6dc-311c96b9d290",
-                            Email = "admin@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            Name = "system",
-                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
-                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAED/zctnV26qFnj5u5grzRq5wFmr3TkH8JSmKAei3daR1owgZUpQSikillQys5kmepA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "752eb322-03fe-4df0-9bcd-35992de1c241",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@localhost.com"
-                        },
-                        new
-                        {
-                            Id = "6bc333d6-41cd-5539-ad37-a8c941bf66d5",
-                            AccessFailedCount = 0,
-                            City = "London",
-                            ConcurrencyStamp = "1b10d798-f414-4cf5-a552-68601100a988",
-                            Email = "user@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            Name = "system",
-                            NormalizedEmail = "USER@LOCALHOST.COM",
-                            NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEInUmQ9bDPs+6XgumpA2UjuIwiPuimmCxfFYcY/mt1gM8P6aSiJTJ2KTM/ex0K05YQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6be65051-0bbe-4e49-804e-07ff637d69d9",
-                            TwoFactorEnabled = false,
-                            UserName = "user@localhost.com"
-                        },
-                        new
-                        {
-                            Id = "6bd555a6-61fc-4339-bc37-a5c532bf99d5",
-                            AccessFailedCount = 0,
-                            City = "Doncaster",
-                            ConcurrencyStamp = "a8af2b1f-f73f-42bc-a54f-8cf87b13074f",
-                            Email = "company@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            Name = "system",
-                            NormalizedEmail = "COMPANY@LOCALHOST.COM",
-                            NormalizedUserName = "COMPANY@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA8Jv+o5HS2NiXq9Ko69L032Uaqq1cHoNI36sesycEh34zzXKtf0pNa2GKsl2lCvbA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6c03addc-ebcc-4af1-a2ca-a5e17e76bfe3",
-                            TwoFactorEnabled = false,
-                            UserName = "company@localhost.com"
-                        },
-                        new
-                        {
-                            Id = "6dc22d7-83cc-4799-cf47-a2c222bc22d5",
-                            AccessFailedCount = 0,
-                            City = "Leeds",
-                            ConcurrencyStamp = "888f6e96-bfb1-4fbe-aad4-bebb42557148",
-                            Email = "employer@localhost.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            Name = "system",
-                            NormalizedEmail = "EMPLOYER@LOCALHOST.COM",
-                            NormalizedUserName = "EMPLOYER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC0pfDFA+rFpTL+lnVqLtJDApQtmuoaPogrnQOqIqnaEWulUvicxA/TpnrU84ysPhw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "de9cd4c1-2b3b-46af-a084-93d7be280767",
-                            TwoFactorEnabled = false,
-                            UserName = "employer@localhost.com"
-                        });
-                });
 
             modelBuilder.Entity("BuckyBook.Models.Category", b =>
                 {
@@ -338,28 +180,28 @@ namespace BuckyBook.Data.Migrations
                         new
                         {
                             Id = "ca9e7e82-f6f8-4353-9b45-3a9db1ba6176",
-                            ConcurrencyStamp = "bec53252-9bc6-49fc-bc2d-a0e3cde9b313",
+                            ConcurrencyStamp = "3dee1969-d917-43a7-8461-5c7f8d38e096",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "ba9a9e88-a7c4-3361-5a68-3b6cb1aa5166",
-                            ConcurrencyStamp = "0180ce19-c77a-4d21-800b-3d03d2e5ae37",
+                            ConcurrencyStamp = "14c7e302-6c64-4913-9066-9e43f70d0e46",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "ac4c7e66-a4c3-2241-4a77-3c6ca1aa4456",
-                            ConcurrencyStamp = "11a1a1c5-3d1c-4b9c-9673-3532f3ea8aaa",
+                            ConcurrencyStamp = "e44510cb-98d8-4352-83fd-93eca39e2803",
                             Name = "Company",
                             NormalizedName = "COMPANY"
                         },
                         new
                         {
                             Id = "ca7a7e55-a6c3-2161-4a33-3c7cb3aa7866",
-                            ConcurrencyStamp = "7e78d08e-19c6-4dec-a9da-00a0d137233b",
+                            ConcurrencyStamp = "238d3269-014d-46db-996e-d27588a823ed",
                             Name = "Employer",
                             NormalizedName = "EMPLOYER"
                         });
@@ -388,6 +230,77 @@ namespace BuckyBook.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -499,11 +412,99 @@ namespace BuckyBook.Data.Migrations
 
             modelBuilder.Entity("BuckyBook.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("BuckyBook.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Navigation("Company");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8ea993d6-11ab-4438-ac76-a9b951af77d5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f56b02d3-15f2-485a-bc8a-c3f1942b7dcc",
+                            Email = "admin@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@LOCALHOST.COM",
+                            NormalizedUserName = "ADMIN@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ45OMeMUvts7CKiPtOhuM5dDtVwgTqGM5acZ0bqXPVtrGGJZg/wqBk84qVtmZo4Tw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f5175c3a-9d5d-4685-97f8-df65f0bb2b15",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@localhost.com",
+                            City = "Hull",
+                            Name = "system"
+                        },
+                        new
+                        {
+                            Id = "6bc333d6-41cd-5539-ad37-a8c941bf66d5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5faf9993-b6e3-449b-aaa1-e87709da63d2",
+                            Email = "user@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@LOCALHOST.COM",
+                            NormalizedUserName = "USER@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHwedTeV+a98o3fjy5gsmfSVaUU3gOm8tDr9uXaN+lf96uSaUT5kAaS12Ob8z6/qgQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3e5db6f0-2d49-40ca-9e09-f616935e40b0",
+                            TwoFactorEnabled = false,
+                            UserName = "user@localhost.com",
+                            City = "London",
+                            Name = "system"
+                        },
+                        new
+                        {
+                            Id = "6bd555a6-61fc-4339-bc37-a5c532bf99d5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5098c17e-7700-4787-b667-77e98a166215",
+                            Email = "company@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "COMPANY@LOCALHOST.COM",
+                            NormalizedUserName = "COMPANY@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGUfGYNALDCe/kWTp4lWxsLYJySRAhv4MBBwc3+fvx27MvqnxkcDGY5GLzU1p1tcxw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a86350ce-0d1c-4f21-9798-0f6a75fd0cff",
+                            TwoFactorEnabled = false,
+                            UserName = "company@localhost.com",
+                            City = "Doncaster",
+                            Name = "system"
+                        },
+                        new
+                        {
+                            Id = "6dc22d7-83cc-4799-cf47-a2c222bc22d5",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6467b836-6d34-48a4-a3df-08b6c11c98b2",
+                            Email = "employer@localhost.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "EMPLOYER@LOCALHOST.COM",
+                            NormalizedUserName = "EMPLOYER@LOCALHOST.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELIaGtXlKVoqVM27NkKuzdyz6YBB+Z7xjxKtEyg7PC0ObDNBWb6UhWwkhE5JnhQ7XQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5379bb14-44ea-4c5c-8fd0-f035314304bb",
+                            TwoFactorEnabled = false,
+                            UserName = "employer@localhost.com",
+                            City = "Leeds",
+                            Name = "system"
+                        });
                 });
 
             modelBuilder.Entity("BuckyBook.Models.Product", b =>
@@ -536,7 +537,7 @@ namespace BuckyBook.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("BuckyBook.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -545,7 +546,7 @@ namespace BuckyBook.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("BuckyBook.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -560,7 +561,7 @@ namespace BuckyBook.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BuckyBook.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -569,7 +570,7 @@ namespace BuckyBook.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("BuckyBook.Models.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
