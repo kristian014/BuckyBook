@@ -14,6 +14,8 @@ namespace BuckyBook.Repositories
             CoverType = new CoverTypeRepository(_context);
             Product = new ProductRepository(_context);
             Company = new CompanyRepository(_context);
+            ShoppingCart = new ShoppingCartRepository(_context);
+            ApplicationUser = new ApplicationUserRepository(_context);
         }
         public ICategoryRepository Category { get; private set; }
 
@@ -22,6 +24,11 @@ namespace BuckyBook.Repositories
         public IProductRepository Product { get; private set; }
 
         public ICompanyRepository Company { get; private set; }
+
+        public IApplicationUserRepository ApplicationUser { get; private set; }
+
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+
     }
 
 }

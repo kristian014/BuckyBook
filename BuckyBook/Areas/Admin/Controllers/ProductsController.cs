@@ -11,6 +11,7 @@ using BuckyBook.Models;
 using BuckyBook.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BuckyBook.Areas.Admin.Controllers
 {
@@ -36,30 +37,32 @@ namespace BuckyBook.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Details/5
-
-        /*
-         *  public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await unitOfWork.Product.
-                .Include(p => p.Category)
-                .Include(p => p.CoverType)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var product = await unitOfWork.Product.GetAsync(id);
+                
             if (product == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            // create the shopping cart obj 
+
+            ShoppingCart shoppingCart = new()
+            {
+                // now have access to the shopping cart props 
+                Count  = 1,
+                Product = product,
+            };
+            return View(shoppingCart);
         }
 
-         * */
-
-        // GET: Admin/Products/Create
+              // GET: Admin/Products/Create
         public IActionResult Create()
         {
             ProductVM productVM = new ProductVM();

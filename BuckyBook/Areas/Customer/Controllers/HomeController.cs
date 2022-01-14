@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using BuckyBook.Models;
 using BuckyBook.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BuckyBook.Areas.Customer.Controllers
 {
@@ -25,9 +27,9 @@ namespace BuckyBook.Areas.Customer.Controllers
             return View(await unitOfWork.Product.GetAllAsync());
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int productId)
         {
-            var product = await unitOfWork.Product.GetProductWithId(id);
+            var product = await unitOfWork.Product.GetProductWithId(productId);
 
             if (product == null)
             {
@@ -36,12 +38,44 @@ namespace BuckyBook.Areas.Customer.Controllers
             ShoppingCart shoppingCart = new()
             {
                 Count = 1,
+                ProductId = productId,
                 Product = product,
             };
 
            // var productVM = mapper.Map<ProductVM>(product);
             return View(shoppingCart);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Details(ShoppingCart shoppingCart)
+        {
+            // create the shopping cart obj 
+
+            // you can use the claim identity to retrieve the 
+            // user ID 
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCart.ApplicationUserId = claim.Value;
+            ShoppingCart shoppingCartFromDB = unitOfWork.ShoppingCart.GetShoppingCartWithUserIdAndProductId(shoppingCart.ApplicationUserId, shoppingCart.ProductId);
+
+            if(shoppingCartFromDB == null)
+            {
+                await unitOfWork.ShoppingCart.AddAsync(shoppingCart);
+            }
+
+            else
+            {
+                // update the shopping cart 
+                unitOfWork.ShoppingCart.IncrementCount(shoppingCartFromDB, shoppingCart.Count);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
         public IActionResult Privacy()
         {
             return View();

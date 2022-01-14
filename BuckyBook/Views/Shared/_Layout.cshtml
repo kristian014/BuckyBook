@@ -33,7 +33,7 @@
                             <a class="nav-link text-white" asp-area="Admin" asp-controller="Companies" asp-action="Index">Company</a>
                         </li>
                       
-                            <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                                  <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Content Management
                                  </a>
@@ -49,7 +49,13 @@
                                    </li>
                              
                                 </ul>
-                          </li>
+                        </li>
+
+                        <li class="nav-item">
+							<a class=nav-link asp-area="Customer" asp-controller="Cart" asp-action="Index">
+								<i class="bi bi-cart-dash-fill"></i>
+							</a>
+						</li>
                         
                     </ul>
                     <partial name="_LoginPartial" />
