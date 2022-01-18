@@ -24,7 +24,8 @@ namespace BuckyBook.Areas.Customer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await unitOfWork.Product.GetAllAsync());
+            var products = await unitOfWork.Product.GetAllAsync();
+            return View(products);
         }
 
         public async Task<IActionResult> Details(int productId)

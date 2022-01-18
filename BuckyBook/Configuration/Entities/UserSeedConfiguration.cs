@@ -19,6 +19,7 @@ namespace BuckyBook.Configurations.Entities
                 NormalizedEmail = "ADMIN@LOCALHOST.COM",
                 NormalizedUserName = "ADMIN@LOCALHOST.COM",
                 UserName = "admin@localhost.com",
+                PhoneNumber = "07563223432",
                 Name = "system",
                 City = "Hull",
                 PasswordHash = hasher.HashPassword(null, "P@ssword1"),
@@ -33,6 +34,7 @@ namespace BuckyBook.Configurations.Entities
                  NormalizedUserName = "USER@LOCALHOST.COM",
                  UserName = "user@localhost.com",
                  Name = "system",
+                 PhoneNumber = "07563223562",
                  City = "London",
                  PasswordHash = hasher.HashPassword(null, "P@ssword1"),
                  EmailConfirmed = true
@@ -46,6 +48,7 @@ namespace BuckyBook.Configurations.Entities
                  NormalizedUserName = "COMPANY@LOCALHOST.COM",
                  UserName = "company@localhost.com",
                  Name = "system",
+                 PhoneNumber = "07563223245",
                  City = "Doncaster",
                  PasswordHash = hasher.HashPassword(null, "P@ssword1"),
                  EmailConfirmed = true
@@ -59,6 +62,7 @@ namespace BuckyBook.Configurations.Entities
                   NormalizedUserName = "EMPLOYER@LOCALHOST.COM",
                   UserName = "employer@localhost.com",
                   Name = "system",
+                  PhoneNumber = "07563237582",
                   City = "Leeds",
                   PasswordHash = hasher.HashPassword(null, "P@ssword1"),
                   EmailConfirmed = true

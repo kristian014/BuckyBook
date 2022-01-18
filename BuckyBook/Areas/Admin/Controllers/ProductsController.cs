@@ -94,6 +94,9 @@ namespace BuckyBook.Areas.Admin.Controllers
         // GET: Admin/Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+            //"images/products/931b6bf2-5469-406d-8663-a489d3bfd34b.jpg"
+            //"images/products/00f851fd-ce3c-4786-9c64-79b646c32868.jpg"
             if (id == null)
             {
                 return NotFound();
@@ -174,7 +177,7 @@ namespace BuckyBook.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var oldImagePath = Path.Combine(webHostEnviroment.WebRootPath, product.ImageUrl.TrimStart('\\'));
+            var oldImagePath = Path.Combine(webHostEnviroment.WebRootPath, product.ImageUrl);
             if (System.IO.File.Exists(oldImagePath))
             {
                 // if it does delete it
@@ -189,7 +192,7 @@ namespace BuckyBook.Areas.Admin.Controllers
         {
             if(imageUrl != null)
             {
-                var oldImagePath = Path.Combine(rootPath, imageUrl.TrimStart('\\'));
+                var oldImagePath = Path.Combine(rootPath, imageUrl);
                 if (System.IO.File.Exists(oldImagePath))
                 {
                     // if it does delete it
@@ -202,12 +205,15 @@ namespace BuckyBook.Areas.Admin.Controllers
         {
             //string imageUrl = "";
             string wwwRootPath = webHostEnviroment.WebRootPath;
+
+      
             if (file != null)
             {
                 // we have an image 
                 string fileName = Guid.NewGuid().ToString();
-                // fine the location where the file needs to be uploaded 
-                var FileUploads = Path.Combine(wwwRootPath, @"images\products");
+                // fine the location where the file needs to be uploaded
+                // $"images{Path.DirectorySeparatorChar}UploadFile"
+                var FileUploads = Path.Combine(wwwRootPath, $"images{Path.DirectorySeparatorChar}products");
                 var extension = Path.GetExtension(file.FileName);
 
                 isImageUrlExist(imageUrl, wwwRootPath);
@@ -217,7 +223,7 @@ namespace BuckyBook.Areas.Admin.Controllers
                 {
                     file.CopyTo(fileStream);
                 }
-                imageUrl = @"\images\products\" + fileName + extension;
+                imageUrl = $"/images{Path.DirectorySeparatorChar}products/" + fileName + extension;
             }
 
             return imageUrl;

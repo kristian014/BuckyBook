@@ -5,5 +5,6 @@ namespace BuckyBook.Contracts
 {
     public interface IApplicationUserRepository : IGenericRepository<ApplicationUser>
     {
+        public ApplicationUser GetUserById(string userId);
     }
 }

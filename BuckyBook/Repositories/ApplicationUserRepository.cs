@@ -13,5 +13,11 @@ namespace BuckyBook.Repositories
         {
             this.context = context;
         }
+
+        public ApplicationUser GetUserById(string userId)
+        {
+            var user = context.ApplicationUsers.FirstOrDefault(u => u.Id == userId);
+            return user; 
+        }
     }
 }

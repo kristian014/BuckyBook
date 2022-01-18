@@ -88,10 +88,20 @@ namespace BuckyBook.Areas.Identity.Pages.Account
 
             [Required]
             public string Name { get; set; }
+
+            [Required]
+            public string PhoneNumber { get; set; }
+
+            [Required]
+            public string PostalCode { get; set; }
+
             [Display(Name = "Street Address")]
             public string StreetAddress { get; set; }
+
             public string City { get; set; }
 
+
+            [ValidateNever]
             public int CompanyId { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> CompanyList { get; set; }
@@ -141,6 +151,8 @@ namespace BuckyBook.Areas.Identity.Pages.Account
                 user.Name = Input.Name;
                 user.StreetAddress = Input.StreetAddress;
                 user.City = Input.City;
+                user.PhoneNumber = Input.PhoneNumber;
+                user.PostalCode = Input.PostalCode;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 
                 if (result.Succeeded)
