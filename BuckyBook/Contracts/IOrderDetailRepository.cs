@@ -7,6 +7,6 @@ namespace BuckyBook.Contracts
     public interface IOrderDetailRepository : IGenericRepository<OrderDetail>
     {
 
-        
+      
     }
 }

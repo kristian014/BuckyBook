@@ -18,13 +18,21 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts" Version="5.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Language.Intellisense" Version="17.0.491" />
+    <PackageReference Include="Stripe" Version="1.12.0" />
+    <PackageReference Include="Stripe.net" Version="39.86.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\products\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Areas\Admin\Views\Orders\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Microsoft.VisualStudio.Language.Intellisense" />
+    <None Remove="Utilities\" />
+    <None Remove="Stripe" />
+    <None Remove="Stripe.net" />
+    <None Remove="Areas\Admin\Views\Orders\" />
   </ItemGroup>
 </Project>

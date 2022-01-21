@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BuckyBook.Models;
 using BuckyBook.Configuration;
+using BuckyBook.Utilities;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +27,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
-
+builder.Services.Configure<Stripesettings>(builder.Configuration.GetSection("Stripe"));
 // setting application cookies 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -51,6 +53,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 app.UseAuthentication();
 app.UseAuthorization();
