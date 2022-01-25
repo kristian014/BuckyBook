@@ -8,10 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BuckyBook.Data;
 using BuckyBook.Models;
+using Microsoft.AspNetCore.Authorization;
+using BuckyBook.Constant;
 
 namespace BuckyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Admin)]
     public class CoverTypesController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

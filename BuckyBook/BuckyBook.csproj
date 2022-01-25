@@ -20,6 +20,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Language.Intellisense" Version="17.0.491" />
     <PackageReference Include="Stripe" Version="1.12.0" />
     <PackageReference Include="Stripe.net" Version="39.86.0" />
+    <PackageReference Include="MailKit" Version="3.1.0" />
+    <PackageReference Include="MimeKit" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,5 +36,7 @@
     <None Remove="Stripe" />
     <None Remove="Stripe.net" />
     <None Remove="Areas\Admin\Views\Orders\" />
+    <None Remove="MailKit" />
+    <None Remove="MimeKit" />
   </ItemGroup>
 </Project>

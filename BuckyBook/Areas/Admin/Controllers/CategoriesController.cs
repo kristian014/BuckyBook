@@ -9,10 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using BuckyBook.Data;
 using BuckyBook.Models;
 using BuckyBook.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using BuckyBook.Constant;
 
 namespace BuckyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Admin)]
     public class CategoriesController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

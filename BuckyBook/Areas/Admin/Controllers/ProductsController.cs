@@ -12,10 +12,12 @@ using BuckyBook.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using BuckyBook.Constant;
 
 namespace BuckyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Admin)]
     public class ProductsController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

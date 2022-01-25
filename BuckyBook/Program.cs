@@ -9,6 +9,7 @@ using BuckyBook.Models;
 using BuckyBook.Configuration;
 using BuckyBook.Utilities;
 using Stripe;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.Configure<Stripesettings>(builder.Configuration.GetSection("Stripe"));
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 // setting application cookies 
 builder.Services.ConfigureApplicationCookie(options =>
 {

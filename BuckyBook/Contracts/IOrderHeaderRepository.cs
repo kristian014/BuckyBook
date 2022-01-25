@@ -16,6 +16,8 @@ namespace BuckyBook.Contracts
 
         Task<IEnumerable<OrderHeader>> GetAllOrderHeaders(string userId, string UserId);
 
+        Task<OrderHeader> GetOrderHeaderByOrderId(int? orderId);
+
 
     }
 }

@@ -16,6 +16,7 @@ namespace BuckyBook.Repositories
             this.context = context;
         }
 
+        // update order status
         public void UpdateOrderStatue(int id, string orderStatus, string? paymentStatus = null)
         {
             var orderFromDB = context.OrderHeaders.FirstOrDefault(u => u.Id == id);
@@ -33,16 +34,19 @@ namespace BuckyBook.Repositories
             context.SaveChanges();
         }
 
+        
         public void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId)
         {
             var orderFromDB = context.OrderHeaders.FirstOrDefault(u => u.Id == id);
 
+            orderFromDB.PaymentDate = DateTime.Now;
             orderFromDB.SessionId = sessionId;
             orderFromDB.PaymentIntentId = paymentIntentId;
 
             context.SaveChanges();
         }
 
+        // get all order headers by status 
         public async Task<IEnumerable<OrderHeader>> GetAllOrderHeaders(string status)
         {
 
@@ -77,6 +81,7 @@ namespace BuckyBook.Repositories
 
         }
 
+        // get orders by userId and status 
         public async Task<IEnumerable<OrderHeader>> GetAllOrderHeaders(string userId, string status)
         {
 
@@ -112,7 +117,27 @@ namespace BuckyBook.Repositories
             }
 
         }
+        // het order by ID 
+        public async Task<OrderHeader> GetOrderHeaderByOrderId(int? orderId)
+        {
+            if(orderId == null)
+            {
+                return null;
+            }
 
+            else
+            {
+                var orderHeader =
+             await context.OrderHeaders
+              .Include(p => p.ApplicationUser)
+              .FirstOrDefaultAsync(p => p.Id == orderId);
+
+                return orderHeader;
+            }
+
+        }
+
+        // get order by user ID
         public async Task<IEnumerable<OrderHeader>> GetAllOrderHeaderByUserId(string userId)
         {
             var orderHeaders =
@@ -144,22 +169,23 @@ namespace BuckyBook.Repositories
             return orderHeaders;
         }
 
-        private async Task<List<OrderHeader>> GetOrderHeadersByOrderStatus(string staticDetail)
-        {
-            var orderHeaders =
-            await context.OrderHeaders
-                 .Include(p => p.ApplicationUser)
-                 .Where(p => p.OrderStatus == staticDetail).ToListAsync();
-
-            return orderHeaders;
-        }
-
+     
         private async Task<List<OrderHeader>> GetOrderHeadersByOrderStatus(string staticDetail, string userId)
         {
             var orderHeaders =
             await context.OrderHeaders
                  .Include(p => p.ApplicationUser)
                  .Where(p => p.OrderStatus == staticDetail && p.ApplicationUserId == userId).ToListAsync();
+
+            return orderHeaders;
+        }
+
+        private async Task<List<OrderHeader>> GetOrderHeadersByOrderStatus(string staticDetail)
+        {
+            var orderHeaders =
+            await context.OrderHeaders
+                 .Include(p => p.ApplicationUser)
+                 .Where(p => p.OrderStatus == staticDetail).ToListAsync();
 
             return orderHeaders;
         }

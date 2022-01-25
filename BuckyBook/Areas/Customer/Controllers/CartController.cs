@@ -3,6 +3,7 @@ using BuckyBook.Models;
 using BuckyBook.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using System.Security.Claims;
@@ -15,12 +16,14 @@ namespace BuckyBook.Areas.Customer.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         public ShoppingCartVM ShoppingCartVM { get; set; }
+        private readonly IEmailSender _emailSender;
         public int OrderTotal { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public CartController(UserManager<ApplicationUser> userManager,  IUnitOfWork unitOfWork)
+        public CartController(UserManager<ApplicationUser> userManager, IEmailSender emailSender, IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+            _emailSender = emailSender;
 
         }
         // [AllowAnonymous]
@@ -225,7 +228,7 @@ namespace BuckyBook.Areas.Customer.Controllers
         public async Task<IActionResult> OrderConfirmation(int id)
         {
             // the orderheader has been passed through the SummaryPost controller method  
-            OrderHeader orderHeader = await unitOfWork.OrderHeader.GetAsync(id);
+            OrderHeader orderHeader = await unitOfWork.OrderHeader.GetOrderHeaderByOrderId(id);
             if (!User.IsInRole(Roles.Company) && orderHeader.PaymentStatus != StaticDetails.PaymentStatusDelayedPayment)
             {
                 var service = new SessionService();
@@ -238,7 +241,7 @@ namespace BuckyBook.Areas.Customer.Controllers
 
             }
 
-
+            await _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Bucky Book", "<p> Thank you for placing a new order </p>");
             var shoppingCarts = await unitOfWork.ShoppingCart.GetAllShoppingCartByUserId(orderHeader.ApplicationUserId);
             await unitOfWork.ShoppingCart.RemoveRangeAsync(shoppingCarts);
             return View(id);
